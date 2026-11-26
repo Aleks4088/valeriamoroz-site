@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Личное ведение Валерии Мороз</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: молочные листы чередуются с пудровыми; «деловые» блоки (цифры, шаги, участие) на тёплом хаки; малиновый — единственный яркий акцент */
+:root{
+  --milk:#faf5ef;       /* основной фон */
+  --powder:#f3e3e2;     /* пудровые полосы */
+  --rose:#e7c4c8;       /* пудрово-розовые линии и плашки */
+  --berry:#b0395c;      /* малиновый акцент */
+  --berry-soft:#d77f98;
+  --khaki:#5f6140;      /* хаки-горчичный фон блоков */
+  --mustard:#c9b46a;    /* горчичный акцент на хаки */
+  --ink:#2f2628;        /* текст */
+  --muted:#7a6a6c;
+  --on-khaki:#f6efe4;
+  --line:rgba(176,57,92,.22);
+  --display:"Playfair Display",Georgia,"Times New Roman",serif;
+  --body:"Manrope","Helvetica Neue",Arial,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--milk);color:var(--ink);font-family:var(--body);font-weight:400;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.band{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));background:var(--milk)}
+.band.alt{background:var(--powder)}
+.band.deep{background:var(--khaki);color:var(--on-khaki)}
+.wrap{max-width:1120px;margin:0 auto;padding-block:clamp(56px,9vw,112px)}
+.eyebrow{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--berry);font-weight:600}
+.deep .eyebrow{color:var(--mustard)}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.08;margin:0;text-wrap:balance;color:var(--ink)}
+.deep h2,.deep h3{color:var(--on-khaki)}
+h1{font-size:clamp(42px,7.4vw,88px);letter-spacing:-.01em}
+h1 em,h2 em{font-style:italic;color:var(--berry)}
+.deep h2 em{color:var(--mustard)}
+h2{font-size:clamp(32px,5vw,58px)}
+h3{font-size:clamp(22px,2.4vw,28px);font-weight:600}
+p{margin:0}
+.lead{font-size:clamp(17px,1.7vw,20px);max-width:58ch;color:var(--muted)}
+.deep .lead{color:var(--on-khaki);opacity:.85}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:17px 32px;border-radius:999px;border:1.5px solid var(--berry);color:var(--berry);text-decoration:none;font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;transition:background .3s,color .3s}
+.btn.solid{background:var(--berry);color:#fff}
+.btn:hover,.btn:focus-visible{background:var(--ink);border-color:var(--ink);color:#fff;outline:none}
+.deep .btn.solid{background:var(--mustard);border-color:var(--mustard);color:var(--ink)}
+.deep .btn.solid:hover,.deep .btn.solid:focus-visible{background:var(--on-khaki);border-color:var(--on-khaki)}
+img{display:block;max-width:100%;height:auto}
+
+/* HERO */
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,6vw,80px);align-items:center;padding-block:clamp(36px,6vw,88px)}
+.hero-text{display:grid;gap:26px;min-width:0}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px}
+.hero-meta span{background:var(--powder);border:1px solid var(--rose);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:500;color:var(--ink)}
+.portrait{position:relative;margin:0}
+.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:200px 200px 28px 28px}
+.portrait::after{content:"";position:absolute;inset:18px -16px -16px 18px;border-radius:200px 200px 28px 28px;background:var(--rose);z-index:-1}
+.portrait figcaption{position:absolute;left:50%;transform:translateX(-50%);bottom:22px;background:var(--milk);border-radius:999px;padding:9px 22px;font-family:var(--display);font-style:italic;font-size:19px;white-space:nowrap}
+
+/* Оглавление */
+.toc{background:var(--milk);border-block:1px solid var(--line)}
+.toc-in{padding-block:14px!important;display:flex;flex-wrap:wrap;gap:8px 10px;justify-content:center}
+.toc a{color:var(--ink);text-decoration:none;font-size:14px;font-weight:500;padding:6px 14px;border-radius:999px;transition:background .25s,color .25s}
+.toc a:hover,.toc a:focus-visible{background:var(--berry);color:#fff;outline:none}
+
+/* С чем приходят */
+.pain{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:44px}
+.pain div{background:var(--milk);border-radius:20px;padding:22px 24px;display:grid;grid-template-columns:40px 1fr;gap:4px 14px;min-width:0}
+.pain b{font-family:var(--display);font-size:22px;font-weight:600;line-height:1.2;grid-column:2}
+.pain span{grid-column:2;color:var(--muted);font-size:16px}
+.pain i{grid-row:1/3;font-family:var(--display);font-style:italic;font-size:22px;color:var(--berry);line-height:1.2}
+
+/* Вдвоём */
+.duo{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(16px,3vw,36px);margin-top:44px;align-items:stretch}
+.duo .card{background:var(--powder);border-radius:26px;padding:clamp(26px,4vw,40px);display:grid;gap:14px;align-content:start;min-width:0}
+.duo .plus{font-family:var(--display);font-size:56px;color:var(--berry);align-self:center;line-height:1}
+.duo ul,.step ul,.ticket ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.duo li,.step li,.ticket li{padding-left:22px;position:relative}
+.duo li::before,.step li::before,.ticket li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--berry-soft)}
+.deep .step li::before,.deep .ticket li::before{background:var(--mustard)}
+.duo .who{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--khaki);font-weight:600}
+
+/* Кто мы */
+.people{display:grid;gap:clamp(48px,7vw,88px);margin-top:44px}
+.person{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(26px,5vw,64px);align-items:start}
+.person.flip{grid-template-columns:1.15fr .85fr}
+.person.flip .ph{order:2}
+.person .ph img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:26px}
+.person-body{display:grid;gap:20px;min-width:0}
+.creds{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.creds li{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
+.creds li span:first-child{font-family:var(--display);font-size:19px;color:var(--berry);font-weight:600;font-variant-numeric:tabular-nums}
+.quote{font-family:var(--display);font-style:italic;font-size:clamp(20px,2.2vw,25px);line-height:1.35;background:var(--milk);border-radius:20px;padding:20px 24px}
+.small{font-size:13px;color:var(--muted)}
+.dark-note{font-size:13px;color:var(--muted)}
+.deep .dark-note{color:var(--on-khaki);opacity:.75}
+
+/* Цифры */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:28px}
+.stats div{padding:26px 22px;border-radius:22px;background:rgba(246,239,228,.08);border:1px solid rgba(201,180,106,.35);display:grid;gap:6px}
+.stats b{font-family:var(--display);font-size:clamp(40px,5vw,58px);font-weight:500;color:var(--mustard);line-height:1;font-variant-numeric:tabular-nums}
+.stats span{font-size:14px}
+
+/* Шаги */
+.steps{margin-top:44px;display:grid;gap:0}
+.step{display:grid;grid-template-columns:150px 1fr 1.2fr;gap:clamp(18px,4vw,44px);padding:34px 0;border-top:1px solid rgba(201,180,106,.35)}
+.step:last-child{border-bottom:1px solid rgba(201,180,106,.35)}
+.step .when{align-self:start;justify-self:start;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--ink);background:var(--mustard);border-radius:999px;padding:6px 14px}
+
+/* Наука */
+.science{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:44px}
+.science article{display:grid;gap:12px;align-content:start;padding:26px;border-radius:24px;background:var(--powder);min-width:0}
+.science b{font-family:var(--display);font-size:clamp(44px,5vw,58px);font-weight:500;line-height:1;color:var(--berry)}
+.science cite{font-style:normal;font-size:12px;color:var(--muted)}
+.nots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 36px;margin-top:22px}
+.nots p{padding-left:28px;position:relative}
+.nots p::before{content:"×";position:absolute;left:0;top:-.15em;font-family:var(--display);font-size:24px;color:var(--khaki)}
+
+/* Результаты и отзывы */
+.res-head{display:flex;justify-content:space-between;align-items:end;gap:18px;flex-wrap:wrap;margin-top:48px}
+.arrows{display:flex;gap:10px}
+.arrows button{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--berry);background:transparent;color:var(--berry);font-size:19px;cursor:pointer;transition:background .25s,color .25s}
+.arrows button:hover,.arrows button:focus-visible{background:var(--berry);color:#fff;outline:none}
+.rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:20px 0 16px;scrollbar-width:thin;scrollbar-color:var(--berry-soft) transparent;-webkit-overflow-scrolling:touch}
+.rail:focus-visible{outline:2px solid var(--berry);outline-offset:4px}
+.rail figure{flex:0 0 min(80vw,360px);margin:0;scroll-snap-align:start;display:grid;gap:10px;align-content:start}
+.rail figure.wide{flex-basis:min(86vw,450px)}
+.rail img{width:100%;height:auto;border-radius:18px;background:var(--milk)}
+.rail figcaption{font-size:14px;color:var(--muted)}
+.rail figcaption b{display:block;font-family:var(--display);font-size:21px;font-weight:600;color:var(--ink)}
+.res-note{font-size:13px;color:var(--muted)}
+.rail figure.qcard{flex:0 0 min(78vw,330px);border-radius:24px;padding:26px 24px;display:grid;gap:16px;align-content:space-between;background:var(--powder)}
+.qcard blockquote{margin:0;font-family:var(--display);font-style:italic;font-size:clamp(20px,2.1vw,23px);line-height:1.35}
+.qcard figcaption{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--berry);font-weight:600}
+#rail-club figure{flex-basis:min(70vw,290px)}
+
+/* Участие */
+.offer{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,72px);align-items:center}
+.path{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.path div{border-radius:18px;background:rgba(246,239,228,.08);border:1px solid rgba(201,180,106,.35);padding:16px;display:grid;gap:4px;min-width:0}
+.path b{font-family:var(--display);font-size:20px;font-weight:600;color:var(--mustard)}
+.path span{font-size:14px}
+.ticket{background:var(--milk);color:var(--ink);border-radius:30px;padding:clamp(28px,5vw,48px);display:grid;gap:20px}
+.ticket .eyebrow{color:var(--berry)}
+.ticket li::before{background:var(--berry-soft)!important}
+.ticket .dark-note{color:var(--muted);opacity:1}
+.ticket .btn.solid{background:var(--berry);border-color:var(--berry);color:#fff}
+.ticket .btn.solid:hover{background:var(--ink);border-color:var(--ink)}
+.price{font-family:var(--display);font-size:clamp(52px,7vw,80px);line-height:1;font-variant-numeric:tabular-nums}
+.price small{font-size:.32em;color:var(--muted);font-family:var(--body)}
+.seats{display:flex;gap:8px;align-items:center;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--khaki);font-weight:600}
+.seats i{width:12px;height:12px;border:1.5px solid var(--berry);border-radius:50%;display:inline-block}
+
+/* FAQ */
+.faq{margin-top:40px;display:grid;gap:10px}
+.faq details{background:var(--milk);border-radius:18px;padding:0 22px}
+.faq summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;font-family:var(--display);font-size:clamp(19px,2vw,23px);font-weight:600;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:0;top:14px;font-size:30px;font-weight:400;color:var(--berry);transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq summary:focus-visible{outline:2px solid var(--berry);outline-offset:4px;border-radius:8px}
+.faq details p{padding:0 0 22px;max-width:70ch;color:var(--muted)}
+
+/* Финал */
+.final{text-align:center}
+.final .wrap{display:grid;gap:24px;justify-items:center}
+.final .lead{margin-inline:auto}
+.photo-strip{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px}
+.photo-strip img{width:100%;aspect-ratio:9/7;object-fit:cover;border-radius:24px}
+
+@media (max-width:860px){
+  .hero .wrap,.person,.person.flip,.offer{grid-template-columns:1fr}
+  .person.flip .ph{order:0}
+  .duo{grid-template-columns:1fr}
+  .duo .plus{justify-self:center;font-size:44px}
+  .pain,.science,.nots,.path{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .step{grid-template-columns:1fr;gap:12px}
+  .creds li{grid-template-columns:90px 1fr}
+  .portrait::after{inset:12px -8px -10px 12px}
+  .photo-strip{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero-text>*{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+  .hero-text>*:nth-child(2){animation-delay:.07s}.hero-text>*:nth-child(3){animation-delay:.14s}.hero-text>*:nth-child(4){animation-delay:.21s}.hero-text>*:nth-child(5){animation-delay:.28s}
+  @keyframes rise{from{transform:translateY(12px)}to{transform:none}}
+  html{scroll-behavior:smooth}
+}
+
+
+/* Рисунки карандашом по краям блоков */
+:root{--rasp:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20220%20240%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.6%22%3E%3Cpath%20d%3D%22M104%2C128%20C110%2C90%20122%2C55%20150%2C18%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M106%2C128%20C113%2C92%20124%2C58%20152%2C20%22%20stroke%3D%22%236b6d3f%22%20stroke-width%3D%22.8%22/%3E%3Cg%20transform%3D%22translate%28118%2C82%29%20rotate%28-150%29%22%3E%3Cpath%20d%3D%22M0%2C0%20C11.5%2C-11%2032.199999999999996%2C-11%2046%2C0%20C32.199999999999996%2C11%2011.5%2C11%200%2C0Z%22%20fill%3D%22%23dfe3c8%22%20fill-opacity%3D%22.55%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M2%2C0%20L42%2C0%20M16.099999999999998%2C0%20l6%2C-5%20M25.3%2C0%20l6%2C-5%20M16.099999999999998%2C0%20l6%2C5%20M25.3%2C0%20l6%2C5%22%20stroke%3D%22%236b6d3f%22%20stroke-width%3D%221%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28132%2C52%29%20rotate%28-20%29%22%3E%3Cpath%20d%3D%22M0%2C0%20C10.0%2C-10%2028.0%2C-10%2040%2C0%20C28.0%2C10%2010.0%2C10%200%2C0Z%22%20fill%3D%22%23dfe3c8%22%20fill-opacity%3D%22.55%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M2%2C0%20L36%2C0%20M14.0%2C0%20l6%2C-5%20M22.0%2C0%20l6%2C-5%20M14.0%2C0%20l6%2C5%20M22.0%2C0%20l6%2C5%22%20stroke%3D%22%236b6d3f%22%20stroke-width%3D%221%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28142%2C34%29%20rotate%28-120%29%22%3E%3Cpath%20d%3D%22M0%2C0%20C8.5%2C-9%2023.799999999999997%2C-9%2034%2C0%20C23.799999999999997%2C9%208.5%2C9%200%2C0Z%22%20fill%3D%22%23dfe3c8%22%20fill-opacity%3D%22.55%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M2%2C0%20L30%2C0%20M11.899999999999999%2C0%20l6%2C-5%20M18.700000000000003%2C0%20l6%2C-5%20M11.899999999999999%2C0%20l6%2C5%20M18.700000000000003%2C0%20l6%2C5%22%20stroke%3D%22%236b6d3f%22%20stroke-width%3D%221%22/%3E%3C/g%3E%3Ccircle%20cx%3D%2284.0%22%20cy%3D%22140.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M80.0%2C137.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22100.0%22%20cy%3D%22140.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M96.0%2C137.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22116.0%22%20cy%3D%22140.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M112.0%2C137.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%2276.0%22%20cy%3D%22156.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M72.0%2C153.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%2292.0%22%20cy%3D%22156.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M88.0%2C153.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22108.0%22%20cy%3D%22156.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M104.0%2C153.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22124.0%22%20cy%3D%22156.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M120.0%2C153.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%2274.0%22%20cy%3D%22173.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M70.0%2C170.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%2291.0%22%20cy%3D%22173.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M87.0%2C170.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22109.0%22%20cy%3D%22173.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M105.0%2C170.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22126.0%22%20cy%3D%22173.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M122.0%2C170.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%2278.0%22%20cy%3D%22190.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M74.0%2C187.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%2294.0%22%20cy%3D%22190.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M90.0%2C187.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22110.0%22%20cy%3D%22190.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M106.0%2C187.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22124.0%22%20cy%3D%22190.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M120.0%2C187.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%2286.0%22%20cy%3D%22206.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M82.0%2C203.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22102.0%22%20cy%3D%22206.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M98.0%2C203.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22117.0%22%20cy%3D%22206.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M113.0%2C203.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%2295.0%22%20cy%3D%22219.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M91.0%2C216.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22110.0%22%20cy%3D%22219.0%22%20r%3D%229.5%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M106.0%2C216.0%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Cpath%20d%3D%22M100%2C130%20q-3.5%2C-7.2%20-13.9%2C-8.0%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M100%2C130%20q1.3%2C-7.9%20-6.8%2C-14.5%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M100%2C130%20q5.6%2C-5.7%202.8%2C-15.8%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M100%2C130%20q7.9%2C-1.5%2011.3%2C-11.3%22%20stroke%3D%22%236b6d3f%22/%3E%3Ccircle%20cx%3D%22149.2%22%20cy%3D%2299.1%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M147.0%2C97.4%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22158.0%22%20cy%3D%2299.1%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M155.8%2C97.4%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22166.8%22%20cy%3D%2299.1%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M164.6%2C97.4%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22144.8%22%20cy%3D%22107.9%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M142.6%2C106.2%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22153.6%22%20cy%3D%22107.9%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M151.4%2C106.2%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22162.4%22%20cy%3D%22107.9%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M160.2%2C106.2%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22171.2%22%20cy%3D%22107.9%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M169.0%2C106.2%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22143.7%22%20cy%3D%22117.2%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M141.5%2C115.6%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22153.1%22%20cy%3D%22117.2%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M150.9%2C115.6%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22162.9%22%20cy%3D%22117.2%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M160.8%2C115.6%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22172.3%22%20cy%3D%22117.2%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M170.1%2C115.6%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22145.9%22%20cy%3D%22126.6%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M143.7%2C124.9%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22154.7%22%20cy%3D%22126.6%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M152.5%2C124.9%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22163.5%22%20cy%3D%22126.6%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M161.3%2C124.9%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22171.2%22%20cy%3D%22126.6%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M169.0%2C124.9%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22150.3%22%20cy%3D%22135.4%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M148.1%2C133.8%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22159.1%22%20cy%3D%22135.4%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M156.9%2C133.8%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22167.3%22%20cy%3D%22135.4%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M165.2%2C133.8%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22155.2%22%20cy%3D%22142.6%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M153.1%2C140.9%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Ccircle%20cx%3D%22163.5%22%20cy%3D%22142.6%22%20r%3D%225.2%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.75%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M161.3%2C140.9%20q2%2C-3%205%2C-3%22%20stroke%3D%22%23b0395c%22%20stroke-width%3D%22.9%22/%3E%3Cpath%20d%3D%22M158%2C93.6%20q-3.5%2C-7.2%20-13.9%2C-8.0%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M158%2C93.6%20q1.3%2C-7.9%20-6.8%2C-14.5%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M158%2C93.6%20q5.6%2C-5.7%202.8%2C-15.8%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M158%2C93.6%20q7.9%2C-1.5%2011.3%2C-11.3%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M158%2C94%20C162%2C70%20150%2C60%20146%2C48%22%20stroke%3D%22%236b6d3f%22/%3E%3C/svg%3E");--twig:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20220%20240%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.6%22%3E%3Cpath%20d%3D%22M20%2C210%20C60%2C170%20100%2C120%20180%2C30%22%20stroke%3D%22%236b6d3f%22/%3E%3Cg%20transform%3D%22translate%2820%2C210%29%20rotate%28-80%29%22%3E%3Cpath%20d%3D%22M0%2C0%20C11.0%2C-11%2030.799999999999997%2C-11%2044%2C0%20C30.799999999999997%2C11%2011.0%2C11%200%2C0Z%22%20fill%3D%22%23dfe3c8%22%20fill-opacity%3D%22.55%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M2%2C0%20L40%2C0%20M15.399999999999999%2C0%20l6%2C-5%20M24.200000000000003%2C0%20l6%2C-5%20M15.399999999999999%2C0%20l6%2C5%20M24.200000000000003%2C0%20l6%2C5%22%20stroke%3D%22%236b6d3f%22%20stroke-width%3D%221%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2850%2C175%29%20rotate%28-170%29%22%3E%3Cpath%20d%3D%22M0%2C0%20C11.0%2C-11%2030.799999999999997%2C-11%2044%2C0%20C30.799999999999997%2C11%2011.0%2C11%200%2C0Z%22%20fill%3D%22%23dfe3c8%22%20fill-opacity%3D%22.55%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M2%2C0%20L40%2C0%20M15.399999999999999%2C0%20l6%2C-5%20M24.200000000000003%2C0%20l6%2C-5%20M15.399999999999999%2C0%20l6%2C5%20M24.200000000000003%2C0%20l6%2C5%22%20stroke%3D%22%236b6d3f%22%20stroke-width%3D%221%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%2880%2C140%29%20rotate%28-60%29%22%3E%3Cpath%20d%3D%22M0%2C0%20C11.0%2C-11%2030.799999999999997%2C-11%2044%2C0%20C30.799999999999997%2C11%2011.0%2C11%200%2C0Z%22%20fill%3D%22%23dfe3c8%22%20fill-opacity%3D%22.55%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M2%2C0%20L40%2C0%20M15.399999999999999%2C0%20l6%2C-5%20M24.200000000000003%2C0%20l6%2C-5%20M15.399999999999999%2C0%20l6%2C5%20M24.200000000000003%2C0%20l6%2C5%22%20stroke%3D%22%236b6d3f%22%20stroke-width%3D%221%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28110%2C105%29%20rotate%28-150%29%22%3E%3Cpath%20d%3D%22M0%2C0%20C11.0%2C-11%2030.799999999999997%2C-11%2044%2C0%20C30.799999999999997%2C11%2011.0%2C11%200%2C0Z%22%20fill%3D%22%23dfe3c8%22%20fill-opacity%3D%22.55%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M2%2C0%20L40%2C0%20M15.399999999999999%2C0%20l6%2C-5%20M24.200000000000003%2C0%20l6%2C-5%20M15.399999999999999%2C0%20l6%2C5%20M24.200000000000003%2C0%20l6%2C5%22%20stroke%3D%22%236b6d3f%22%20stroke-width%3D%221%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28140%2C70%29%20rotate%28-40%29%22%3E%3Cpath%20d%3D%22M0%2C0%20C11.0%2C-11%2030.799999999999997%2C-11%2044%2C0%20C30.799999999999997%2C11%2011.0%2C11%200%2C0Z%22%20fill%3D%22%23dfe3c8%22%20fill-opacity%3D%22.55%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M2%2C0%20L40%2C0%20M15.399999999999999%2C0%20l6%2C-5%20M24.200000000000003%2C0%20l6%2C-5%20M15.399999999999999%2C0%20l6%2C5%20M24.200000000000003%2C0%20l6%2C5%22%20stroke%3D%22%236b6d3f%22%20stroke-width%3D%221%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28170%2C35%29%20rotate%28-130%29%22%3E%3Cpath%20d%3D%22M0%2C0%20C11.0%2C-11%2030.799999999999997%2C-11%2044%2C0%20C30.799999999999997%2C11%2011.0%2C11%200%2C0Z%22%20fill%3D%22%23dfe3c8%22%20fill-opacity%3D%22.55%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M2%2C0%20L40%2C0%20M15.399999999999999%2C0%20l6%2C-5%20M24.200000000000003%2C0%20l6%2C-5%20M15.399999999999999%2C0%20l6%2C5%20M24.200000000000003%2C0%20l6%2C5%22%20stroke%3D%22%236b6d3f%22%20stroke-width%3D%221%22/%3E%3C/g%3E%3C/svg%3E");--flower:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20200%20240%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.6%22%3E%3Cpath%20d%3D%22M100%2C108%20C98%2C150%20104%2C190%2096%2C236%22%20stroke%3D%22%236b6d3f%22/%3E%3Cg%20transform%3D%22translate%2899%2C170%29%20rotate%28-30%29%22%3E%3Cpath%20d%3D%22M0%2C0%20C10.0%2C-10%2028.0%2C-10%2040%2C0%20C28.0%2C10%2010.0%2C10%200%2C0Z%22%20fill%3D%22%23dfe3c8%22%20fill-opacity%3D%22.55%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M2%2C0%20L36%2C0%20M14.0%2C0%20l6%2C-5%20M22.0%2C0%20l6%2C-5%20M14.0%2C0%20l6%2C5%20M22.0%2C0%20l6%2C5%22%20stroke%3D%22%236b6d3f%22%20stroke-width%3D%221%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28100%2C200%29%20rotate%28-160%29%22%3E%3Cpath%20d%3D%22M0%2C0%20C9.5%2C-10%2026.599999999999998%2C-10%2038%2C0%20C26.599999999999998%2C10%209.5%2C10%200%2C0Z%22%20fill%3D%22%23dfe3c8%22%20fill-opacity%3D%22.55%22%20stroke%3D%22%236b6d3f%22/%3E%3Cpath%20d%3D%22M2%2C0%20L34%2C0%20M13.299999999999999%2C0%20l6%2C-5%20M20.900000000000002%2C0%20l6%2C-5%20M13.299999999999999%2C0%20l6%2C5%20M20.900000000000002%2C0%20l6%2C5%22%20stroke%3D%22%236b6d3f%22%20stroke-width%3D%221%22/%3E%3C/g%3E%3Cg%20transform%3D%22translate%28100%2C82%29%22%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-17%22%20rx%3D%229%22%20ry%3D%2216%22%20transform%3D%22rotate%280%29%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.7%22%20stroke%3D%22%23b0395c%22/%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-17%22%20rx%3D%229%22%20ry%3D%2216%22%20transform%3D%22rotate%2872%29%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.7%22%20stroke%3D%22%23b0395c%22/%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-17%22%20rx%3D%229%22%20ry%3D%2216%22%20transform%3D%22rotate%28144%29%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.7%22%20stroke%3D%22%23b0395c%22/%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-17%22%20rx%3D%229%22%20ry%3D%2216%22%20transform%3D%22rotate%28216%29%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.7%22%20stroke%3D%22%23b0395c%22/%3E%3Cellipse%20cx%3D%220%22%20cy%3D%22-17%22%20rx%3D%229%22%20ry%3D%2216%22%20transform%3D%22rotate%28288%29%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.7%22%20stroke%3D%22%23b0395c%22/%3E%3Ccircle%20r%3D%227%22%20fill%3D%22%23e2cf8a%22%20stroke%3D%22%236b6d3f%22/%3E%3Ccircle%20r%3D%222%22%20cx%3D%22-2%22%20cy%3D%22-1%22%20fill%3D%22%236b6d3f%22%20stroke%3D%22none%22/%3E%3C/g%3E%3Cpath%20d%3D%22M150%2C70%20c-6%2C-10%20-2%2C-22%208%2C-24%20c4%2C10%200%2C20%20-8%2C24z%22%20fill%3D%22%23efc9d0%22%20fill-opacity%3D%22.7%22%20stroke%3D%22%23b0395c%22/%3E%3Cpath%20d%3D%22M150%2C70%20C140%2C100%20120%2C120%20101%2C140%22%20stroke%3D%22%236b6d3f%22/%3E%3C/svg%3E")}
+.band{position:relative;overflow:hidden}
+.band>.wrap{position:relative;z-index:1}
+.band::before,.band::after{content:none;position:absolute;pointer-events:none;background-repeat:no-repeat;background-size:contain;z-index:0}
+.hero::before{content:"";width:190px;height:210px;left:-30px;bottom:-30px;background-image:var(--twig);opacity:.68;transform:rotate(8deg)}
+#who::before{content:"";width:270px;height:295px;right:-40px;top:-20px;background-image:var(--rasp);opacity:.72;transform:rotate(18deg)}
+#help::before{content:"";width:150px;height:180px;left:-28px;top:30px;background-image:var(--flower);opacity:.62;transform:rotate(-14deg)}
+.people-sec::before{content:"";width:240px;height:260px;left:-60px;bottom:-40px;background-image:var(--twig);opacity:.62;transform:scaleX(-1) rotate(-6deg)}
+.people-sec::after{content:"";width:170px;height:190px;right:-24px;top:16px;background-image:var(--rasp);opacity:.68;transform:rotate(-24deg)}
+#results::before{content:"";width:170px;height:200px;right:-60px;top:-30px;background-image:var(--flower);opacity:.68;transform:rotate(12deg)}
+#faq::before{content:"";width:260px;height:285px;right:-36px;bottom:-40px;background-image:var(--rasp);opacity:.72;transform:rotate(-10deg)}
+.final::before{content:"";width:150px;height:170px;left:6%;top:40px;background-image:var(--rasp);opacity:.68;transform:rotate(-18deg)}
+.final::after{content:"";width:150px;height:170px;right:6%;top:50px;background-image:var(--flower);opacity:.62;transform:rotate(16deg)}
+@media (max-width:860px){.band::before,.band::after{width:120px!important;height:135px!important;opacity:.35!important}}
+/* Кому поможем */
+.helps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:40px}
+.helps article{background:var(--powder);border-radius:22px;padding:22px 22px 20px;display:grid;gap:10px;align-content:start;min-width:0}
+.helps h3{font-size:22px;color:var(--berry)}
+.helps p{font-size:16px}
+.helps cite{font-style:normal;font-size:12px;color:var(--muted)}
+/* Стена отзывов */
+.count{font-size:14px;color:var(--muted)}
+.wall{margin-top:22px;max-height:1500px;overflow:hidden;position:relative}
+.wall-in{columns:3 240px;column-gap:14px}
+.wall.open{max-height:none}
+.wall:not(.open)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:180px;background:linear-gradient(transparent,var(--milk))}
+.wall figure{break-inside:avoid;margin:0 0 14px}
+.wall img{width:100%;border-radius:16px;border:1px solid var(--rose)}
+.wall-more{display:flex;justify-content:center;margin:18px 0}
+@media (max-width:860px){.helps{grid-template-columns:1fr}.wall{max-height:1100px}}
+
+
+/* v15: круглые фото и карточка «Обо мне» */
+.person .ph.round{max-width:440px;justify-self:center;width:100%}
+.person .ph.round img{aspect-ratio:1/1;border-radius:50%;object-fit:cover;box-shadow:0 0 0 10px var(--milk),0 0 0 11px var(--rose)}
+.person .ph.round.doc img{object-position:center 18%}
+.bio-card{background:var(--khaki);color:var(--on-khaki);border-radius:28px;padding:clamp(24px,4vw,36px);display:grid;gap:16px}
+.bio-title{font-family:var(--display);font-size:clamp(24px,2.6vw,30px);color:var(--on-khaki)}
+.bio-title::after{content:"";display:block;width:56px;height:2px;background:var(--mustard);margin-top:14px}
+.bio{margin:0;padding:0;list-style:none;display:grid;gap:11px}
+.bio li{padding-left:22px;position:relative;font-size:16.5px;line-height:1.55}
+.bio li::before{content:"";position:absolute;left:2px;top:.6em;width:8px;height:8px;border-radius:50%;background:var(--mustard)}
+.person{align-items:center}
+
+.person .ph.lera{max-width:460px;justify-self:center;width:100%}
+.person .ph.lera img{aspect-ratio:4/5;object-fit:cover;border-radius:32px;box-shadow:0 0 0 10px var(--milk),0 0 0 11px var(--rose)}
+.rail figure.vid{flex:0 0 min(62vw,240px)}
+.rail figure.vid video{width:100%;aspect-ratio:9/16;border-radius:18px;background:#000;display:block}
+
+/* лента видео-тарелок */
+.plates-head{width:100%;margin-top:40px;text-align:left}
+.plates-note{width:100%;text-align:left;margin:0}
+.rail.plates{width:100%}
+.rail.plates figure{flex:0 0 min(58vw,220px);position:relative;cursor:pointer}
+.rail.plates video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:22px;display:block;background:var(--powder)}
+.rail.plates .snd{position:absolute;right:10px;bottom:10px;background:rgba(255,255,255,.85);border-radius:999px;padding:4px 8px;font-size:14px;line-height:1}
+/* v14 */
+#kids .helps article{background:var(--milk)}
+.helps article.wide-card{grid-column:span 3;background:var(--rose)}
+.helps article.wide-card h3{font-size:clamp(22px,2.4vw,28px)}
+.rail.rev figure{flex:0 0 min(74vw,300px)}
+.rail.rev img{border:1px solid var(--rose)}
+.count{margin-top:6px}
+#kids::before{content:"";width:200px;height:220px;right:-30px;top:10px;background-image:var(--flower);opacity:.62;transform:rotate(14deg)}
+@media (max-width:860px){.helps article.wide-card{grid-column:auto}}
+</style>
+<link rel="stylesheet" href="fonts/fonts.css">
+</head>
+<body>
+
+
+<!-- 1. HERO -->
+<section class="band hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <div class="eyebrow">Личное ведение · 1,5 месяца мы на связи с вами</div>
+      <h1>Ваше здоровье <em>в двух</em> внимательных руках</h1>
+      <p class="lead">Полтора месяца мы рядом с вами. Доктор, специалист по питанию и образу жизни и коуч Анастасия Владимировна разбирает анализы и помогает встроить новые привычки в жизнь без срывов. Кулинарный коуч и биохакер Валерия Мороз собирает питание по науке, которое подходит вашему телу, вкусу и жизни. Ведём взрослых и детей. Без диет, без БАДов на всякий случай, без догадок.</p>
+      <div class="hero-meta"><span>1,5 месяца</span><span>Мы на связи все 1,5 месяца</span><span>Созвон каждую неделю</span><span>Взрослые и дети</span><span>2–3 человека в месяц</span><span>Онлайн</span></div>
+      <div><a class="btn solid" href="#offer">Подать заявку</a></div>
+    </div>
+    <figure class="portrait" style="margin:0">
+      <img src="media/photo/photo-01.jpg" alt="Валерия Мороз на своей кухне держит боул с эдамаме">
+      <figcaption>Валерия Мороз · кулинарный коуч, биохакер</figcaption>
+    </figure>
+  </div>
+</section>
+
+<nav class="band toc" aria-label="Разделы"><div class="wrap toc-in">
+<a href="#who">С чем приходят</a><a href="#help">Кому поможем</a><a href="#kids">Детям</a><a href="#team">Кто мы</a><a href="#how">Как проходит</a><a href="#results">Результаты</a><a href="#voices">Отзывы</a><a href="#offer">Участие</a><a href="#faq">Вопросы</a></div></nav>
+
+<!-- 2. С ЧЕМ ПРИХОДЯТ -->
+<section class="band alt" id="who">
+  <div class="wrap">
+    <div class="eyebrow">С чем к нам приходят</div>
+    <h2 style="margin-top:18px">Анализы «в норме», <em>а жить</em> тяжело</h2>
+    <div class="pain">
+      <div><i>i</i><b>Нет энергии</b><span>Просыпаетесь без сил, после обеда клонит в сон, кофе уже не спасает.</span></div>
+      <div><i>ii</i><b>Кожа</b><span>Акне, высыпания на лице, атопический дерматит, сухость. Кремы и мази помогают ненадолго.</span></div>
+      <div><i>iii</i><b>Вес не уходит</b><span>Перепробовали диеты и марафоны. Вес возвращается, а вместе с ним чувство вины.</span></div>
+      <div><i>iv</i><b>Дефициты</b><span>Низкий ферритин, B12, витамин D. Пьёте добавки, а цифры почти не двигаются.</span></div>
+      <div><i>v</i><b>Живот</b><span>Вздутие, тяжесть, нерегулярный стул. Привыкли считать это нормой.</span></div>
+      <div><i>vi</i><b>Цифры «на границе»</b><span>Сахар, холестерин, давление, печень ещё не болезнь, но врач уже предупредил.</span></div>
+      <div><i>vii</i><b>Тяга к сладкому</b><span>Держитесь до вечера, а потом тянет на сладкое и мучное.</span></div>
+      <div><i>viii</i><b>Пищевое поведение</b><span>Заедаете стресс и эмоции, срываетесь, а потом вините себя за еду.</span></div>
+      <div><i>ix</i><b>Ребёнок</b><span>Часто болеет, ест пять продуктов, тянется к сладкому, на коже высыпания. Хочется наладить питание без войны за столом.</span></div>
+      <div><i>x</i><b>Питание для всей семьи</b><span>Хочется есть по науке, без дефицитов, одной понятной тарелкой для всех.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2a. КОМУ ПОМОЖЕМ -->
+<section class="band" id="help">
+  <div class="wrap">
+    <div class="eyebrow">Кому мы поможем</div>
+    <h2 style="margin-top:18px">Мы про <em>здоровье</em>, а не про диету</h2>
+    <p class="lead" style="margin-top:22px">Мы строим питание по науке: преимущественно цельные растительные продукты по принципам Гарвардской тарелки здоровья. Это основа медицины образа жизни, и исследования показывают, что такое питание помогает при многих состояниях, с которыми к нам приходят.</p>
+    <div class="helps">
+      <article class="wide-card"><h3>Кожа: акне, высыпания, атопический дерматит</h3><p>Кожа часто первой отвечает на смену тарелки. Молочные продукты и быстрые сахара связаны с акне, а противовоспалительное питание помогает при дерматитах. Это мы знаем не только по исследованиям: атопический дерматит ушёл в ремиссию у обеих из нас, а у клиентов уходили высыпания на руках, ногах и лице.</p><cite>Мета-анализы, Clinical Nutrition, 2018–2020; опыт нашей команды</cite></article>
+      <article><h3>Лишний вес</h3><p>Уходит без голода и подсчёта калорий. В исследовании BROAD люди на питании с упором на цельные растительные продукты за полгода сбросили в среднем около 11 кг.</p><cite>Nutrition &amp; Diabetes, 2017</cite></article>
+      <article><h3>Преддиабет и диабет 2 типа</h3><p>У тех, кто ест больше цельной растительной еды, риск диабета 2 типа на 34% ниже. Данные Гарварда, 200 тысяч человек.</p><cite>Harvard T.H. Chan School of Public Health, PLoS Medicine, 2016</cite></article>
+      <article><h3>Жировой гепатоз</h3><p>Печень хорошо отвечает на питание. При снижении веса на 10% и больше воспаление в печени уходило у 9 из 10 человек.</p><cite>Gastroenterology, 2015</cite></article>
+      <article><h3>Холестерин и сердце</h3><p>Здоровая растительная основа тарелки снижает риск ишемической болезни сердца на 25%.</p><cite>Harvard, Journal of the American College of Cardiology, 2017</cite></article>
+      <article><h3>Давление</h3><p>Питание с упором на растительные продукты в среднем снижает верхнее давление примерно на 5 мм рт. ст.</p><cite>JAMA Internal Medicine, 2014</cite></article>
+      <article><h3>ЖКТ</h3><p>Вздутие, тяжесть, запоры. Клетчатка из цельных продуктов кормит полезные бактерии кишечника.</p><cite>Гарвардская тарелка здоровья</cite></article>
+      <article><h3>Аутоиммунные состояния</h3><p>АИТ, ревматоидный артрит. Противовоспалительное питание в исследованиях уменьшало боль и активность болезни.</p><cite>The Lancet, 1991; обзоры 2020-х</cite></article>
+      <article><h3>Дефициты</h3><p>Низкий ферритин, B12, витамин D. Собираем тарелку по анализам, чтобы цифры росли.</p><cite>Всемирная организация здравоохранения</cite></article>
+      <article><h3>Пищевое поведение</h3><p>Заедание стресса, срывы, тяга к сладкому. Коуч помогает встроить рекомендации в жизнь так, чтобы не было срывов и ощущения ограничений.</p><cite>Работа с коучем в программе</cite></article>
+    </div>
+    <p class="small" style="margin-top:22px">Мы работаем вместе с вашим лечащим врачом: не ставим диагнозы и не отменяем лечение.</p>
+  </div>
+</section>
+
+<!-- 2b. ДЕТЯМ -->
+<section class="band alt" id="kids">
+  <div class="wrap">
+    <div class="eyebrow">Детям</div>
+    <h2 style="margin-top:18px">Помогаем и <em>детям</em></h2>
+    <p class="lead" style="margin-top:22px">Анастасия Владимировна по образованию врач-педиатр, 8 лет она работала с детьми в клиниках. Поэтому мы ведём не только взрослых, но и детей, и всю семью сразу.</p>
+    <div class="helps">
+      <article><h3>Высыпания и атопический дерматит</h3><p>У Анастасии Владимировны отдельное обучение по дерматозам детского возраста. Смотрим, как питание влияет на кожу ребёнка.</p></article>
+      <article><h3>Избирательность в еде</h3><p>Ребёнок ест пять продуктов? Мягко расширяем рацион, без уговоров и войны за столом.</p></article>
+      <article><h3>Дефициты</h3><p>Железо, витамин D, B12, йод. Подскажем, какие анализы сдать, и соберём детскую тарелку, чтобы ребёнок рос без дефицитов.</p></article>
+      <article><h3>Сладкое и лишний вес</h3><p>Убираем лишний сахар и перекусы так, чтобы ребёнок не чувствовал запретов.</p></article>
+      <article><h3>Живот</h3><p>Запоры, вздутие, боли в животе. Начинаем с клетчатки, воды и режима, а если есть повод, подскажем, к какому врачу обратиться.</p></article>
+      <article><h3>Часто болеющий ребёнок</h3><p>Простуда за простудой. Смотрим, чего не хватает в питании и режиме, чтобы иммунитету было на что опереться.</p></article>
+      <article><h3>Аденоиды и тонзиллиты</h3><p>Подбираем питание и образ жизни, которые поддерживают ребёнка вместе с лечением у ЛОР-врача.</p></article>
+      <article><h3>Пищевые аллергии</h3><p>Собираем полноценный рацион без аллергенов, чтобы ребёнок получал всё нужное для роста.</p></article>
+      <article><h3>Одна тарелка на всю семью</h3><p>Готовите один раз на всех: взрослым и детям одна полезная и вкусная еда.</p></article>
+    </div>
+    <p class="small" style="margin-top:22px">Консультация носит рекомендательный характер и не заменяет очную консультацию врача.</p>
+  </div>
+</section>
+
+<!-- 3. ВДВОЁМ -->
+<section class="band" id="team">
+  <div class="wrap">
+    <div class="eyebrow">Почему вдвоём</div>
+    <h2 style="margin-top:18px">Анализы читает <em>доктор</em>. Тарелку собирает кулинарный коуч</h2>
+    <p class="lead" style="margin-top:24px">Обычно человек остаётся один между двумя мирами: на руках анализы, а что с ними делать на кухне, никто не объяснил. Мы закрываем этот разрыв.</p>
+    <div class="duo">
+      <div class="card">
+        <div class="who">Доктор · специалист по питанию и образу жизни · коуч</div>
+        <h3>Анастасия Владимировна</h3>
+        <ul>
+          <li>Подсказывает, какие анализы сдать под ваш запрос</li>
+          <li>Разбирает результаты с точки зрения питания и объясняет их простыми словами</li>
+          <li>Даёт рекомендации по питанию с учётом анализов</li>
+          <li>Как коуч помогает встроить рекомендации в жизнь так, чтобы не было срывов и ощущения ограничений</li>
+          <li>3 созвона с вами за программу: в начале, в середине и в конце</li>
+          <li>Ведёт детей: по образованию она врач-педиатр</li>
+          <li>Если видит повод, подскажет, к какому врачу обратиться. Не лечит и не назначает лекарства</li>
+        </ul>
+      </div>
+      <div class="plus" aria-hidden="true">+</div>
+      <div class="card">
+        <div class="who">Кулинарный коуч · биохакер · специалист доказательной нутрициологии и lifestyle medicine</div>
+        <h3>Валерия Мороз</h3>
+        <ul>
+          <li>Изучает, как вы едите сейчас, по дневнику и фото</li>
+          <li>Собирает ваш рацион: тарелки, меню, рецепты, список покупок</li>
+          <li>Учит готовить полезно, быстро и вкусно, чтобы новая еда нравилась всей семье</li>
+          <li>Учитывает вкус, бюджет, семью и ваш график</li>
+          <li>Раз в неделю созвон: разбираем ваши тарелки и подстраиваем меню</li>
+          <li>Мы на связи все полтора месяца, пока новая еда не станет привычкой</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. КТО МЫ -->
+<section class="band alt people-sec">
+  <div class="wrap">
+    <div class="eyebrow">Кто будет рядом</div>
+    <h2 style="margin-top:18px">Знания, <em>проверенные</em> на себе</h2>
+    <div class="people">
+      <div class="person">
+        <div class="ph lera"><img src="media/photo/photo-02.jpg" alt="Валерия Мороз в поварском кителе у полки с золотой и серебряными кнопками YouTube"></div>
+        <div class="person-body">
+          <div class="eyebrow">Доказательный нутрициолог · специалист lifestyle medicine · кулинарный коуч · биохакер</div>
+          <h3 style="font-size:clamp(34px,4vw,46px)">Валерия Мороз</h3>
+          <div class="bio-card"><div class="bio-title">Обо мне</div><ul class="bio">
+            <li>Доказательный нутрициолог, работаю по принципам Гарвардской тарелки здоровья</li>
+            <li>Эксперт растительного питания с 10-летним опытом</li>
+            <li>Специалист lifestyle medicine с многолетним опытом</li>
+            <li>Активно занимаюсь спортом, силовыми тренировками. Муж и дочь тоже в спорте, вся семья на растительном рационе, анализы у всех в идеале</li>
+            <li>Совладелица и продюсер собственной сети кулинарных каналов на YouTube: более 30 каналов и более 6 млн подписчиков. Со мной работает команда: повара, операторы, монтажёры, менеджеры. 1 золотая и 10 серебряных кнопок YouTube</li>
+            <li>Создатель клуба «Осознанное питание», где участники каждый день получают разбор своих тарелок, ответы на вопросы и рецепты и шаг за шагом переходят на здоровое питание без дефицитов</li>
+            <li>Обучаю шеф-поваров, блогеров и кондитеров готовить из растительных продуктов с пользой для здоровья, а также зарабатывать на своём контенте</li>
+            <li>Обучаю блогерству: как стать блогером и зарабатывать на своём кулинарном блоге или хобби. Более сотни учеников по всему миру, многие уже получили золотые кнопки YouTube</li>
+            <li>Автор сборников растительных рецептов: «Растительная молочка», «Живая еда», «Здоровая печень», «Железный справочник», «Веган мороженое»</li>
+            <li>Десятки клиентов сбросили со мной вес, избавились от кожных проблем, наладили ЖКТ и самочувствие</li>
+            <li>Минус 8 кг за полгода на здоровом питании, без голодовок</li>
+            <li>Только начала строить личный бренд с нуля: Instagram за 5 месяцев уже собрал 30 000 подписчиков, Facebook — 35 000, Telegram-канал — 1 500, а в моём клубе «Осознанное питание» почти 300 участников. На моём личном YouTube-канале с чистыми растительными рецептами 110 000 подписчиков</li>
+          </ul></div>
+          <p class="quote">Я прошла это сама. Лишний вес, узел в щитовидке, миома, кисты по-женски, хронический цистит, железодефицит, постоянный атопический дерматит, высыпания на лице, панические атаки. Сегодня этого нет в моей жизни. Мой муж за 3 месяца сбросил 13 кг, а жировой гепатоз на контрольном УЗИ больше не нашли. Питание и образ жизни стали нашим главным инструментом, и я хочу провести этим путём вас.</p>
+          <p class="small">Личный опыт, а не обещание результата. Лечение назначает только врач.</p>
+        </div>
+      </div>
+
+      <div class="person flip">
+        <div class="ph lera doc"><img src="media/photo/photo-03.jpg" alt="Анастасия Владимировна, портрет"></div>
+        <div class="person-body">
+          <div class="eyebrow">Врач-педиатр по образованию · специалист по питанию и образу жизни · коуч</div>
+          <h3 style="font-size:clamp(34px,4vw,46px)">Анастасия Владимировна</h3>
+          <ul class="creds">
+            <li><span>2012–2018</span><span>Курский государственный медицинский университет, обучение по специальности «Педиатрия»</span></li>
+            <li><span>2018–2020</span><span>Ординатура по педиатрии</span></li>
+            <li><span>8 лет</span><span>работы врачом-педиатром в государственных и частных клиниках</span></li>
+            <li><span>2024</span><span>«Доказательный нутрициолог», 282 часа</span></li>
+            <li><span>2025</span><span>«Специалист lifestyle-медицины», 263 часа. «Дерматозы детского возраста», 36 часов</span></li>
+            <li><span>Коуч</span><span>помогу встроить рекомендации в жизнь так, чтобы не было срывов и ощущения ограничений</span></li>
+            <li><span>100+</span><span>клиентов за 3 года</span></li>
+          </ul>
+          <p class="quote">К медицине образа жизни я пришла через собственную боль 9 лет назад: лишние 10 кг, гипотиреоз, атопический дерматит с постоянными обострениями, панические атаки. В 22 года было ощущение, что я далеко не молодая девушка. За полгода я привела в норму своё состояние: снизила вес, нормализовала функцию щитовидной железы и ввела атопический дерматит в ремиссию. На работу с паническими атаками ушло 5 лет. Тогда я поняла, что именно образ жизни решает наши проблемы гораздо лучше, чем препараты, которыми мы маскируем симптомы.</p>
+          <p class="quote">В своей педиатрической практике я все 8 лет видела результат питания и образа жизни, в том числе на детях. И ещё раз убеждалась в том, что наше здоровье в знаниях и в образе жизни! И мы готовы делиться и применять все знания во благо вашего здоровья!</p>
+          <p class="small">Консультация носит рекомендательный характер и не заменяет очную консультацию врача.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. ЦИФРЫ -->
+<section class="band deep" id="how">
+  <div class="wrap" style="padding-block:clamp(56px,7vw,88px)">
+    <div class="eyebrow">Коротко</div>
+    <div class="stats">
+      <div><b>2</b><span>специалиста на одного человека</span></div>
+      <div><b>6</b><span>недель от анализов до итоговой встречи</span></div>
+      <div><b>6 + 3</b><span>созвона: 6 с Валерией и 3 с Анастасией Владимировной</span></div>
+      <div><b>2–3</b><span>человека в месяц, это наш максимум</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. ПРОГРАММА -->
+<section class="band deep">
+  <div class="wrap" style="padding-top:0">
+    <div class="eyebrow">Как проходит ведение</div>
+    <h2 style="margin-top:18px">Шесть недель, <em>шаг</em> за шагом</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="when">Неделя 1</div>
+        <h3>Смотрим глубже</h3>
+        <ul>
+          <li>Подробная анкета о здоровье, сне, нагрузке, стрессе</li>
+          <li>Дневник питания на 7 дней с фото тарелок</li>
+          <li>Видеовстреча с Анастасией Владимировной и список анализов под ваш запрос</li>
+          <li>Разбор результатов с точки зрения питания, понятным языком</li>
+          <li>Если есть повод, подскажем, к какому врачу обратиться</li>
+        </ul>
+      </div>
+      <div class="step">
+        <div class="when">Неделя 1–2</div>
+        <h3>Собираем ваш рацион</h3>
+        <ul>
+          <li>Встреча с Валерией, 90 минут: вкусы, бюджет, семья, график</li>
+          <li>Ваша система тарелок под цели и анализы</li>
+          <li>Меню на 2 недели с рецептами и список покупок</li>
+          <li>План заготовок, чтобы готовить 2 раза в неделю, а не каждый день</li>
+          <li>Ревизия кухни: что убрать и чем заменить</li>
+        </ul>
+      </div>
+      <div class="step">
+        <div class="when">Весь период</div>
+        <h3>Мы на связи все полтора месяца</h3>
+        <ul>
+          <li>Созвон с Валерией раз в неделю</li>
+          <li>За неделю вы собираете фото своих тарелок, на созвоне разбираем их вместе</li>
+          <li>Подстраиваем меню под то, как вы себя чувствуете</li>
+          <li>3 созвона с Анастасией Владимировной: в начале, в середине и в конце программы</li>
+          <li>Вопросы по анализам и пищевому поведению разбирает Анастасия Владимировна</li>
+          <li>Вы не остаётесь один на один с вопросами</li>
+        </ul>
+      </div>
+      <div class="step">
+        <div class="when">Неделя 6</div>
+        <h3>Сверяем результат</h3>
+        <ul>
+          <li>Итоговая встреча втроём: самочувствие, вес, замеры, кожа, ЖКТ</li>
+          <li>Анастасия Владимировна подскажет, какие анализы и когда пересдать для контроля</li>
+          <li>План на следующие полгода, чтобы вы шли дальше уже сами</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. НАУКА -->
+<section class="band">
+  <div class="wrap">
+    <div class="eyebrow">Почему это работает</div>
+    <h2 style="margin-top:18px">Мы опираемся <em>на исследования</em>, а не на моду</h2>
+    <div class="science">
+      <article>
+        <b>58%</b>
+        <p>Настолько у людей с преддиабетом снизился риск диабета 2 типа, когда они поменяли питание и движение. У метформина в том же исследовании вышло 31%.</p>
+        <cite>Diabetes Prevention Program, New England Journal of Medicine, 2002</cite>
+      </article>
+      <article>
+        <b>№1</b>
+        <p>Железодефицит остаётся самым частым дефицитом питания в мире, особенно у женщин и детей. Его не закрыть без анализов и правильно собранной тарелки.</p>
+        <cite>Всемирная организация здравоохранения</cite>
+      </article>
+      <article>
+        <b>6</b>
+        <p>столпов lifestyle-медицины: питание, движение, сон, стресс, отказ от вредных привычек и близкие люди. Мы смотрим на все шесть, а не только на еду.</p>
+        <cite>American College of Lifestyle Medicine</cite>
+      </article>
+    </div>
+    <div style="margin-top:72px">
+      <div class="eyebrow">Чего мы не делаем</div>
+      <div class="nots">
+        <p>Не ставим диагнозы, не лечим и не назначаем лекарства. Это работа вашего лечащего врача</p>
+        <p>Не отменяем назначенные лекарства</p>
+        <p>Не продаём БАДы и не назначаем добавки без анализов</p>
+        <p>Не сажаем на диеты, детоксы и голодания</p>
+        <p>Не считаем за вас калории и не ругаем за срывы</p>
+        <p>Не обещаем чудес за неделю</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7a. РЕЗУЛЬТАТЫ -->
+<section class="band alt" id="results">
+  <div class="wrap">
+    <div class="eyebrow">Результаты</div>
+    <h2 style="margin-top:18px">Что говорят <em>те</em>, с кем мы уже работали</h2>
+    <div class="res-head">
+      <h3>Клиенты Анастасии Владимировны</h3>
+      <div class="arrows"><button type="button" data-rail="rail-doc" data-dir="-1" aria-label="Назад">&#8592;</button><button type="button" data-rail="rail-doc" data-dir="1" aria-label="Дальше">&#8594;</button></div>
+    </div>
+    <div class="rail" id="rail-doc" tabindex="0" aria-label="Результаты клиентов Анастасии Владимировны">
+      <figure class="vid"><video controls playsinline preload="none" poster="media/photo/poster-01.jpg" src="media/video/video-01.mp4"></video><figcaption><b>Голосовой отзыв клиентки, часть 1</b>нажмите, чтобы послушать</figcaption></figure>
+      <figure class="vid"><video controls playsinline preload="none" poster="media/photo/poster-02.jpg" src="media/video/video-02.mp4"></video><figcaption><b>Голосовой отзыв, часть 2</b>нажмите, чтобы послушать</figcaption></figure>
+      <figure class="wide"><img src="media/photo/photo-04.jpg" alt="Мужчина до и после: 97,8 кг и 87,5 кг"><figcaption><b>−10,3 кг</b>с 28 сентября по 13 ноября</figcaption></figure>
+      <figure class="wide"><img src="media/photo/photo-05.jpg" alt="Мужчина до и после: минус 15 кг с мая по июль"><figcaption><b>−15 кг</b>с мая по июль</figcaption></figure>
+      <figure><img src="media/photo/photo-06.jpg" alt="Отзыв о консультации: план питания для сына"><figcaption><b>Ребёнок</b>отзыв о консультации и плане питания для сына</figcaption></figure>
+      <figure><img src="media/photo/photo-07.jpg" alt="Отзыв: разъяснения по анализам и меню с рецептами"><figcaption>Отзыв о разборе анализов</figcaption></figure>
+      <figure><img src="media/photo/photo-08.jpg" alt="Отзыв: подробные письменные рекомендации"><figcaption>Отзыв о консультации</figcaption></figure>
+      <figure><img src="media/photo/photo-09.jpg" alt="Отзыв: больше месяца питаюсь правильно"><figcaption>Отзыв после месяца работы</figcaption></figure>
+      <figure><img src="media/photo/photo-10.jpg" alt="Переписка: фото рук и ног, высыпания ушли за неделю"><figcaption><b>Кожа</b>«Высыпания ушли за неделю»</figcaption></figure>
+      <figure class="wide"><img src="media/photo/photo-11.jpg" alt="Кожа до и после"><figcaption><b>Кожа: до и после</b>фото клиента</figcaption></figure>
+      <figure><img src="media/photo/photo-12.jpg" alt="Отзыв: волосы выпадают меньше, растёт много новых"><figcaption>Отзыв о волосах после беременности</figcaption></figure>
+    </div>
+    <p class="res-note">Личный результат каждого человека, а не обещание результата. Лекарства и лечение назначает только врач.</p>
+    <div class="res-head" style="margin-top:72px">
+      <h3>Путь нашей семьи и участников программы</h3>
+      <div class="arrows"><button type="button" data-rail="rail-lera" data-dir="-1" aria-label="Назад">&#8592;</button><button type="button" data-rail="rail-lera" data-dir="1" aria-label="Дальше">&#8594;</button></div>
+    </div>
+    <div class="rail" id="rail-lera" tabindex="0" aria-label="Результаты Валерии, её мужа и участников программы">
+      <figure class="wide"><img src="media/photo/photo-13.jpg" alt="Валерия в 37 и в 40 лет"><figcaption><b>Валерия: 37 → 40 лет</b>было: классическое ПП и БАДы. Стало: питание по науке, преимущественно цельное растительное</figcaption></figure>
+      <figure><img src="media/photo/photo-14.jpg" alt="Лицо Валерии до и после"><figcaption><b>Кожа лица Валерии</b>до и после смены питания</figcaption></figure>
+      <figure class="wide"><img src="media/photo/photo-15.jpg" alt="Валерия до и через год"><figcaption><b>Валерия через год</b>спокойного питания без ограничений, в своём режиме</figcaption></figure>
+      <figure><img src="media/photo/photo-16.jpg" alt="Валерия: сравнение с разницей в год"><figcaption><b>Ещё год спустя</b>Валерия не худеет, а набирает мышцы: силовые 3 раза в неделю и тарелка здоровья</figcaption></figure>
+      <figure class="wide"><img src="media/photo/photo-17.jpg" alt="Муж Валерии до и через 3 месяца"><figcaption><b>Муж Валерии: −13 кг за 3 месяца</b>на плановом УЗИ был жировой гепатоз 1 степени, на контрольном его больше не нашли</figcaption></figure>
+      <figure class="wide"><img src="media/photo/photo-18.jpg" alt="Участница программы: 104,5 кг и 85,1 кг"><figcaption><b>Анастасия, участница программы: −19,4 кг за 3 месяца</b>с 24 мая по 25 августа. «Нормализовались сон и настроение»</figcaption></figure>
+    </div>
+    <p class="res-note">Личный опыт нашей семьи и участников программы, а не обещание результата. Фото опубликованы с согласия участников.</p>
+  </div>
+</section>
+
+<!-- 7b. ОТЗЫВЫ -->
+<section class="band" id="voices">
+  <div class="wrap">
+    <div class="eyebrow">Отзывы</div>
+    <h2 style="margin-top:18px">Когда тарелка меняется, <em>меняется</em> и жизнь</h2>
+    <div class="res-head">
+      <h3>Отзывы участников программы «Осознанное питание»</h3>
+      <div class="arrows"><button type="button" data-rail="rail-rev" data-dir="-1" aria-label="Назад">&#8592;</button><button type="button" data-rail="rail-rev" data-dir="1" aria-label="Дальше">&#8594;</button></div>
+    </div>
+    <p class="count">37 скриншотов сообщений, листайте вправо →</p>
+    <div class="rail rev" id="rail-rev" tabindex="0" aria-label="Скриншоты отзывов участников программы">
+      <figure><img src="media/photo/photo-19.jpg" alt="Отзыв участника программы: Тефтели очень понравились" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-20.jpg" alt="Отзыв участника программы: Впервые сливочный маш, очень понравилось" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-21.jpg" alt="Отзыв участника программы: Понравился сливочный маш, никогда так не готовила" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-22.jpg" alt="Отзыв участника программы: Лук теперь на ложке масла, раньше жарила на подсолнечном" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-23.jpg" alt="Отзыв участника программы: Советы применяю, учусь правильно питаться" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-24.jpg" alt="Отзыв участника программы: Увидела Валерию и залипла на рецептах" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-25.jpg" alt="Отзыв участника программы: Анастасия Фролова — результат" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-26.jpg" alt="Отзыв участника программы: Tatjana — минус пару кило" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-27.jpg" alt="Отзыв участника программы: Хлеб и сладкое не хочется" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-28.jpg" alt="Отзыв участника программы: Мраморное печенье из фасоли" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-29.jpg" alt="Отзыв участника программы: Тыквенное печенье" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-30.jpg" alt="Отзыв участника программы: Овсяный хлеб" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-31.jpg" alt="Отзыв участника программы: Татьяна Багрецова — окрылённая результатом" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-32.jpg" alt="Отзыв участника программы: Шоколадный тортик" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-33.jpg" alt="Отзыв участника программы: Galy — не представляю без зелени" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-34.jpg" alt="Отзыв участника программы: Столько ценного узнаю" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-35.jpg" alt="Отзыв участника программы: Утро с заготовками, дешевле мяса" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-36.jpg" alt="Отзыв участника программы: Ушла сонливость после сладкого" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-37.jpg" alt="Отзыв участника программы: Не хочу больше торты с сахаром" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-38.jpg" alt="Отзыв участника программы: Вкусы поменялись, выпечка без сахара" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-39.jpg" alt="Отзыв участника программы: Маш после 10 лет веганства" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-40.jpg" alt="Отзыв участника программы: Спасибо за рецепты" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-41.jpg" alt="Отзыв участника программы: Лимонный курд без сахара" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-42.jpg" alt="Отзыв участника программы: Инстаграм — какая классная страница" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-43.jpg" alt="Отзыв участника программы: Дарят полезные продукты, а не торты" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-44.jpg" alt="Отзыв участника программы: Столько зелени никогда не ела" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-45.jpg" alt="Отзыв участника программы: Тяга к сладкому пропадает" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-46.jpg" alt="Отзыв участника программы: С разборами хочется менять" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-47.jpg" alt="Отзыв участника программы: Появилась лёгкость, сладкое неохота" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-48.jpg" alt="Отзыв участника программы: Колени — история (часть 1, до)" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-49.jpg" alt="Отзыв участника программы: Колени — история (часть 2, боли поубавились)" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-50.jpg" alt="Отзыв участника программы: Колени — история (часть 3)" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-51.jpg" alt="Отзыв участника программы: Нутовые блины — легко и вкусно" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-52.jpg" alt="Отзыв участника программы: Конфеты получились с первого раза" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-53.jpg" alt="Отзыв участника программы: Пришла с ЖКТ и ГЭРБ" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-54.jpg" alt="Отзыв участника программы: Пришла — наладить ЖКТ и лёгкость после еды" loading="lazy"></figure>
+      <figure><img src="media/photo/photo-55.jpg" alt="Отзыв участника программы: Пришла понять, подходит ли растительное — ушло вздутие" loading="lazy"></figure>
+    </div>
+    <p class="res-note">Скриншоты настоящих сообщений, имена скрыты.</p>
+  </div>
+</section>
+
+<!-- 8. УЧАСТИЕ -->
+<section class="band deep" id="offer">
+  <div class="wrap">
+    <div class="offer">
+      <div style="display:grid;gap:24px">
+        <div class="eyebrow">Участие</div>
+        <h2>Это <em>не курс</em> и не марафон</h2>
+        <p class="lead">Мы берём не больше 2–3 человек в месяц. Это наш максимум: все полтора месяца мы с каждым на связи, разбираем тарелки, анализы и самочувствие. Такая работа требует нашего личного внимания и времени, поэтому мест мало и сначала мы знакомимся.</p>
+        <p class="lead">Личное ведение для тех, кто готов вложиться в своё здоровье или здоровье ребёнка и хочет идти рядом со специалистами, а не в одиночку.</p>
+        <p class="dark-note">Анализы оплачиваются отдельно, в вашей лаборатории.</p>
+        <div class="path">
+          <div><b>Заявка</b><span>Пара слов о вас и вашем запросе</span></div>
+          <div><b>Знакомство</b><span>Короткий созвон, чтобы понять, сможем ли мы помочь</span></div>
+          <div><b>Старт</b><span>Договор, анкета и первая встреча</span></div>
+        </div>
+      </div>
+      <div class="ticket">
+        <div class="eyebrow">Личное ведение · 1,5 месяца</div>
+        <div class="price">290 000 <small>₽ за 1,5 месяца</small></div>
+        <div class="seats"><i></i><i></i><i></i><span>2–3 места в месяц</span></div>
+        <ul>
+          <li>Мы на связи все 1,5 месяца</li>
+          <li>Разбор анализов доктором</li>
+          <li>3 созвона с Анастасией Владимировной</li>
+          <li>Коучинг: как встроить новые привычки без срывов и ощущения ограничений</li>
+          <li>Персональный рацион, меню и рецепты от кулинарного коуча</li>
+          <li>6 еженедельных созвонов с Валерией</li>
+          <li>Итоговая встреча втроём</li>
+          <li>В подарок: доступ к программе «Осознанное питание» навсегда и все сборники Валерии</li>
+        </ul>
+        <div><a class="btn solid" href="https://t.me/morozlera">Подать заявку</a></div>
+        <p class="dark-note">Только после знакомства. Возможна оплата частями. Консультация носит рекомендательный характер и не заменяет очную консультацию врача.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. ВОПРОСЫ -->
+<section class="band alt" id="faq">
+  <div class="wrap">
+    <div class="eyebrow">Вопросы</div>
+    <h2 style="margin-top:18px">Что обычно <em>спрашивают</em></h2>
+    <div class="faq">
+      <details><summary>Почему так дорого?</summary><p>Потому что это два специалиста и личное внимание полтора месяца подряд. Вы не смотрите уроки в записи: каждую тарелку, каждый анализ и каждый вопрос мы разбираем лично. Поэтому мы берём не больше 2–3 человек в месяц.</p></details>
+      <details><summary>Я ем мясо. Мне подойдёт?</summary><p>Да. Мы не требуем стать веганом. Мы строим питание по науке, где основа тарелки — цельные растительные продукты. Меняем его постепенно, в вашем темпе и так, чтобы вам было вкусно.</p></details>
+      <details><summary>Вы работаете с мужчинами?</summary><p>Да, мы ведём и мужчин, и женщин. Среди наших результатов есть мужчины, которые сбросили 10 и 15 кг.</p></details>
+      <details><summary>Можно ли вести ребёнка или всю семью?</summary><p>Да. Анастасия Владимировна по образованию врач-педиатр с 8-летней практикой. Помогаем с питанием детей: часто болеющий ребёнок, аденоиды, тонзиллиты, пищевые аллергии, избирательность в еде, высыпания и атопический дерматит, дефициты, живот. Формат для ребёнка или всей семьи обсуждаем на знакомстве.</p></details>
+      <details><summary>С какими состояниями вы работаете?</summary><p>Кожа (акне, высыпания, атопический дерматит), лишний вес, преддиабет и диабет 2 типа, жировой гепатоз, высокий холестерин и давление, ЖКТ, аутоиммунные состояния, дефициты железа, B12 и витамина D. Питание работает вместе с вашим лечащим врачом, лечение мы не отменяем.</p></details>
+      <details><summary>Я живу не в России</summary><p>Ведение полностью онлайн. Анализы вы сдаёте в любой лаборатории своей страны, мы подскажем, как называется нужный тест.</p></details>
+      <details><summary>Что, если в анализах найдут что-то серьёзное?</summary><p>Мы не лечим и не назначаем лекарства. Объясним, что значат цифры, и подскажем, к какому врачу обратиться. А питание выстроим так, чтобы оно поддерживало лечение, а не спорило с ним.</p></details>
+      <details><summary>Как быстро будет результат?</summary><p>Самочувствие часто меняется уже в первые недели. За 6 недель мы вместе выстраиваем новую систему питания и привычки. Запасы железа, сахар и холестерин честнее всего видно по анализам через 2–3 месяца, поэтому мы подскажем, когда их пересдать.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 10. ФИНАЛ -->
+<section class="band final">
+  <div class="wrap">
+    <div class="eyebrow">Последний шаг</div>
+    <h2 style="max-width:16ch">Вы заслуживаете <em>жить</em>, а не терпеть</h2>
+    <p class="lead">Напишите нам пару слов о себе или о ребёнке. Мы ответим лично.</p>
+    <a class="btn solid" href="https://t.me/morozlera">Подать заявку</a>
+    <div class="res-head plates-head"><h3>Мои тарелки здоровья</h3><div class="arrows"><button type="button" data-rail="rail-plates" data-dir="-1" aria-label="Назад">&#8592;</button><button type="button" data-rail="rail-plates" data-dir="1" aria-label="Дальше">&#8594;</button></div></div>
+    <p class="count plates-note">Листайте вправо. Нажмите на видео, чтобы включить звук</p>
+    <div class="rail plates" id="rail-plates" tabindex="0" aria-label="Видео тарелок здоровья Валерии">
+      <figure><video muted loop playsinline preload="metadata" poster="media/photo/poster-03.jpg" src="media/video/video-03.mp4" aria-label="Стол с яркими тарелками"></video><span class="snd" aria-hidden="true">🔇</span></figure>
+      <figure><video muted loop playsinline preload="metadata" poster="media/photo/poster-04.jpg" src="media/video/video-04.mp4" aria-label="Тарелки с овощами и ростками"></video><span class="snd" aria-hidden="true">🔇</span></figure>
+      <figure><video muted loop playsinline preload="metadata" poster="media/photo/poster-05.jpg" src="media/video/video-05.mp4" aria-label="Тарелки на осеннем столе"></video><span class="snd" aria-hidden="true">🔇</span></figure>
+      <figure><video muted loop playsinline preload="metadata" poster="media/photo/poster-06.jpg" src="media/video/video-06.mp4" aria-label="Тарелка с авокадо и свекольным хумусом"></video><span class="snd" aria-hidden="true">🔇</span></figure>
+      <figure><video muted loop playsinline preload="metadata" poster="media/photo/poster-07.jpg" src="media/video/video-07.mp4" aria-label="Тарелки с брокколи и кабачками"></video><span class="snd" aria-hidden="true">🔇</span></figure>
+      <figure><video muted loop playsinline preload="metadata" poster="media/photo/poster-08.jpg" src="media/video/video-08.mp4" aria-label="Тарелки и противень малины"></video><span class="snd" aria-hidden="true">🔇</span></figure>
+      <figure><video muted loop playsinline preload="metadata" poster="media/photo/poster-09.jpg" src="media/video/video-09.mp4" aria-label="Тарелки с огурцом и квашеной капустой"></video><span class="snd" aria-hidden="true">🔇</span></figure>
+      <figure><video muted loop playsinline preload="metadata" poster="media/photo/poster-10.jpg" src="media/video/video-10.mp4" aria-label="Тарелки с чечевицей и томатами"></video><span class="snd" aria-hidden="true">🔇</span></figure>
+      <figure><video muted loop playsinline preload="metadata" poster="media/photo/poster-11.jpg" src="media/video/video-11.mp4" aria-label="Тарелки салата с морковью"></video><span class="snd" aria-hidden="true">🔇</span></figure>
+      <figure><video muted loop playsinline preload="metadata" poster="media/photo/poster-12.jpg" src="media/video/video-12.mp4" aria-label="Тарелки с перцем и капустой"></video><span class="snd" aria-hidden="true">🔇</span></figure>
+      <figure><video muted loop playsinline preload="metadata" poster="media/photo/poster-13.jpg" src="media/video/video-13.mp4" aria-label="Тарелки с запеканкой и чечевицей"></video><span class="snd" aria-hidden="true">🔇</span></figure>
+      <figure><video muted loop playsinline preload="metadata" poster="media/photo/poster-14.jpg" src="media/video/video-14.mp4" aria-label="Тарелка с хумусом и овощами"></video><span class="snd" aria-hidden="true">🔇</span></figure>
+      <figure><video muted loop playsinline preload="metadata" poster="media/photo/poster-15.jpg" src="media/video/video-15.mp4" aria-label="Белая фасоль, картофель в кешью-сливках и салат"></video><span class="snd" aria-hidden="true">🔇</span></figure>
+      <figure><video muted loop playsinline preload="metadata" poster="media/photo/poster-16.jpg" src="media/video/video-16.mp4" aria-label="Тушёная гречка, запечённые черри и рулетики"></video><span class="snd" aria-hidden="true">🔇</span></figure>
+      <figure><video muted loop playsinline preload="metadata" poster="media/photo/poster-17.jpg" src="media/video/video-17.mp4" aria-label="Брускетта с томатами"></video><span class="snd" aria-hidden="true">🔇</span></figure>
+    </div>
+    <p class="dark-note">@plantbased.pp · Валерия Мороз и Анастасия Владимировна</p>
+  </div>
+</section>
+
+<script>
+document.querySelectorAll('.arrows button').forEach(function(b){
+  b.addEventListener('click',function(){
+    var r=document.getElementById(b.dataset.rail); if(!r) return;
+    var f=r.querySelector('figure'); var step=f?f.getBoundingClientRect().width+16:320;
+    r.scrollBy({left:step*Number(b.dataset.dir),behavior:'smooth'});
+  });
+});
+</script>
+
+<script>
+(function(){var vids=[].slice.call(document.querySelectorAll('#rail-plates video'));
+var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.play().catch(function(){})}else{e.target.pause()}})},{threshold:.4}):null;
+vids.forEach(function(v){if(io)io.observe(v);else v.play().catch(function(){});
+ v.parentNode.addEventListener('click',function(){var on=v.muted;vids.forEach(function(o){o.muted=true;o.parentNode.querySelector('.snd').textContent='🔇'});
+  if(on){v.muted=false;v.currentTime=0;v.play().catch(function(){});v.parentNode.querySelector('.snd').textContent='🔊'}});});})();
+</script>
+</body>
+</html>
